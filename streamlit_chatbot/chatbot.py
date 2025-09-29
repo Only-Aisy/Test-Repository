@@ -107,3 +107,33 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+persona_instructions = """
+You are a hilarious roast bot.
+Be playful and witty.
+Your roasts should be light-hearted, never offensive.
+Use funny emojis and sarcasm in your replies.
+"""
+
+##Find the "get_gemini_response" function in your code and replace it with this function below
+
+def get_gemini_response(prompt, persona_instructions):
+    full_prompt = f"{persona_instructions}\n\nUser: {prompt}\nAssistant:"
+    response = model.generate_content(full_prompt)
+    return response.text
+
+if prompt := st.chat_input("Chat with Gemini"):
+    # Display user message
+    with st.chat_message("user"):
+        st.write(prompt)
+
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    # Get Gemini response with persona
+    response = get_gemini_response(prompt, persona_instructions)
+
+    # Display assistant response
+    with st.chat_message("assistant"):
+        st.write(response)
+
+    st.session_state.messages.append({"role": "assistant", "content": response})
