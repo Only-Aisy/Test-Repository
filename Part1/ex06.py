@@ -1,0 +1,5 @@
+Colourlist = ("Red", "Blue", "Yellow", "Green", "Indigo")
+print(Colourlist)
+print(Colourlist[0])
+print(Colourlist[4])
+print(Colourlist[1:4])
